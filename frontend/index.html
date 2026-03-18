@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarvis – Emotion-Aware AI Companion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">🤖 Jarvis</div>
+      <div class="status-bar">
+        <span id="statusVision" class="status-pill">👁 Vision: off</span>
+        <span id="statusSpeech" class="status-pill">🎙 Speech: ready</span>
+        <span id="statusAgent" class="status-pill">🧠 Agent: ready</span>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <!-- Left panel: webcam + emotion -->
+      <section class="vision-panel">
+        <div class="webcam-wrapper">
+          <video id="webcamVideo" autoplay muted playsinline></video>
+          <canvas id="webcamCanvas" style="display:none"></canvas>
+        </div>
+        <div class="emotion-display">
+          <div id="emotionLabel" class="emotion-label">😐 neutral</div>
+          <div id="emotionBar" class="emotion-bar">
+            <div id="emotionFill" class="emotion-fill" style="width:0%"></div>
+          </div>
+          <div class="webcam-controls">
+            <button id="btnStartCam" class="btn btn-primary">▶ Start Camera</button>
+            <button id="btnStopCam" class="btn btn-secondary" disabled>⏹ Stop</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right panel: chat -->
+      <section class="chat-panel">
+        <div id="chatMessages" class="chat-messages">
+          <div class="message assistant-message">
+            <span class="msg-avatar">🤖</span>
+            <div class="msg-bubble">
+              Hey there! I'm Jarvis, your emotion-aware AI companion.
+              Start the camera, then type or speak to me!
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio player (hidden) -->
+        <audio id="audioPlayer" style="display:none"></audio>
+
+        <!-- Input area -->
+        <div class="input-area">
+          <textarea
+            id="userInput"
+            class="chat-input"
+            placeholder="Type your message… or use the mic 🎙"
+            rows="2"
+          ></textarea>
+          <div class="input-buttons">
+            <button id="btnRecord" class="btn btn-mic" title="Record voice">🎙</button>
+            <button id="btnSend" class="btn btn-primary">Send ➤</button>
+          </div>
+        </div>
+        <div id="recordingIndicator" class="recording-indicator" style="display:none">
+          🔴 Recording… click mic again to stop
+        </div>
+      </section>
+    </main>
+
+    <!-- User profile sidebar (collapsed) -->
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-toggle" id="sidebarToggle">☰ Profile</button>
+      <div class="sidebar-content" id="sidebarContent" style="display:none">
+        <h3>User Profile</h3>
+        <input id="userName" type="text" placeholder="Your name" class="profile-input" />
+        <button id="btnSaveName" class="btn btn-primary btn-sm">Save</button>
+        <hr />
+        <h4>Recent Emotions</h4>
+        <ul id="emotionHistory" class="emotion-history-list"></ul>
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
